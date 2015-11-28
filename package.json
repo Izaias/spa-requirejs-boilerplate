@@ -1,0 +1,27 @@
+{
+  "name": "spa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sync": "browser-sync start --files 'app/**.html, app/css/**, app/scripts/**' --server 'app'",
+    "build-js": "r.js -o build.js",
+    "watch-js": "chokidar 'app/scripts/**/*.js' -c 'npm run build-js'",
+    "build-css": "node-sass --include-path scss app/styles/main.scss app/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "watch-n-sync": "npm run watch-css & npm run sync",
+    "build-sass": "node-sass --include-path scss app/styles/main.scss app/css/main.css",
+    "build-min-sass": "node-sass app/styles/main.scss | cleancss -o app/css/main.min.css",
+    "watch-sass": "nodemon -e scss -w app/sass -x 'npm run build-sass'",
+    "watch": "npm run watch-css & npm run sync",
+    "start": "npm run watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "chokidar-cli": "^1.2.0",
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.8.1"
+  }
+}
